@@ -1,33 +1,62 @@
-import React, { useState, ChangeEvent } from "react";
+import React, { useState, ChangeEvent, MouseEventHandler } from "react";
 import Logo from "./SVG/Logo";
 
 interface EmailInputProps {
-  // Add any other props you might need
+  handleLoginAndSignout: MouseEventHandler<HTMLSpanElement>;
+  email: string;
+  setEmail: (email: string) => void;
+  password: string;
+  setPassword: (password: string) => void;
+  repeatPassword: string;
+  setRepeatPassword: (repeatPassword: string) => void;
+  savedEmail: string;
+  setSavedEmail: (savedEmail: string) => void;
+  savedPassword: string;
+  setSavedPassword: (savedPassword: string) => void;
+  isValid: boolean;
+  setValid: (isValid: boolean) => void;
+  isValidPassword: boolean;
+  setValidPassword: (validPassword: boolean) => void;
 }
 
-const SignupComponent: React.FC<EmailInputProps> = () => {
-  const [email, setEmail] = useState<string>("");
-  const [isValid, setValid] = useState<boolean>(true);
-  const [password, setPassword] = useState<string>("");
-  const [repeatPassword, setRepeatPassword] = useState<string>("");
-  const [isValidPassword, setValidPassword] = useState<boolean>(true);
+const SignupComponent: React.FC<EmailInputProps> = ({
+  handleLoginAndSignout,
+  email,
+  setEmail,
+  password,
+  setPassword,
+  repeatPassword,
+  setRepeatPassword,
+  isValid,
+  setValid,
+  isValidPassword,
+  setValidPassword,
+  setSavedEmail,
+  setSavedPassword,
+  savedEmail,
+  savedPassword,
+}) => {
   const [passwordsMatch, setPasswordsMatch] = useState<boolean>(true);
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [showRepeatPassword, setShowRepeatPassword] = useState<boolean>(false);
+  const [signed, setSigned] = useState<boolean>(false);
+  const hideSign = () => {
+    setTimeout(() => {
+      setSigned(false);
+    }, 2000);
+  };
 
   const handleEmailChange = (e: ChangeEvent<HTMLInputElement>): void => {
-    const inputValue: string = e.target.value;
-    setEmail(inputValue);
-
-    // Email validation using a simple regex
+    const inputMailValue: string = e.target.value;
+    setEmail(inputMailValue);
     const emailRegex: RegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    setValid(emailRegex.test(inputValue));
+    setValid(emailRegex.test(inputMailValue));
   };
 
   const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>): void => {
-    const inputValue: string = e.target.value;
-    setPassword(inputValue);
-    setValidPassword(inputValue.length >= 8); // You can adjust the password validation criteria
+    const inputPasswordValue: string = e.target.value;
+    setPassword(inputPasswordValue);
+    setValidPassword(inputPasswordValue.length >= 6);
   };
 
   const handleRepeatPasswordChange = (
@@ -44,6 +73,15 @@ const SignupComponent: React.FC<EmailInputProps> = () => {
     setShowRepeatPassword(!showRepeatPassword);
   };
 
+  const handleSignout = (): void => {
+    localStorage.setItem("mail", email);
+    localStorage.setItem("pass", password);
+    if (isValid && passwordsMatch) {
+      setSigned(true);
+    }
+    hideSign();
+  };
+
   return (
     <div className=" min-w-[100vw] min-h-[100vh] bg-[#10141E] flex flex-col items-center">
       {/* <img className=" mt-[40px]" src={Logo} alt="logo" /> */}
@@ -53,9 +91,17 @@ const SignupComponent: React.FC<EmailInputProps> = () => {
       </div>
 
       <div className=" mt-[50px] w-[327px] h-[420px] bg-[#161D2F] rounded-[10px]">
-        <h1 className=" text-[32px] text-[#FFFFFF] pt-[20px] pl-[20px] mb-[20px]">
-          Sign Up
-        </h1>
+        <div className=" flex flex-row justify-between items-center">
+          <h1 className=" text-[32px] text-[#FFFFFF] pt-[20px] pl-[20px] mb-[20px]">
+            Sign Up
+          </h1>
+          {signed ? (
+            <span className=" text-lime-700 text-[8px] pr-[20px]">
+              {" "}
+              Account created{" "}
+            </span>
+          ) : null}
+        </div>
 
         <input
           placeholder="Email address"
@@ -66,7 +112,9 @@ const SignupComponent: React.FC<EmailInputProps> = () => {
           } w-[279px] h-[37px] ml-[20px] text-[#FFFFFF] bg-[#161D2F] pl-[24px] pb-[30px] pt-[30px] border-b border-b-[#5A698F]`}
         />
         {!isValid && (
-          <p className={`text-[red]`}>Please enter a valid email address</p>
+          <p className={`text-[red] text-[10px] ml-[20px]`}>
+            Please enter a valid email address
+          </p>
         )}
         <div className=" relative">
           <input
@@ -79,7 +127,7 @@ const SignupComponent: React.FC<EmailInputProps> = () => {
             onChange={handlePasswordChange}
           />
           {!isValidPassword && (
-            <p className={`text-[red]`}>
+            <p className={`text-[red] text-[10px] ml-[20px]`}>
               Password must be at least 8 characters
             </p>
           )}
@@ -103,7 +151,9 @@ const SignupComponent: React.FC<EmailInputProps> = () => {
             value={repeatPassword}
           />
           {!passwordsMatch && (
-            <p className={`text-[red]`}>Passwords do not match</p>
+            <p className={`text-[red] text-[10px] ml-[20px]`}>
+              Passwords do not match
+            </p>
           )}
           <span
             onClick={handleToggleRepeatPasswordVisibility}
@@ -114,7 +164,10 @@ const SignupComponent: React.FC<EmailInputProps> = () => {
           </span>
         </div>
 
-        <button className=" ml-[20px] mt-[30px] w-[279px] h-[48px] rounded-[10px] bg-[#FC4747] text-[15px] text-[#FFFFFF]">
+        <button
+          onClick={handleSignout}
+          className=" ml-[20px] mt-[30px] w-[279px] h-[48px] rounded-[10px] bg-[#FC4747] text-[15px] text-[#FFFFFF]"
+        >
           {" "}
           Create an account
         </button>
@@ -124,7 +177,12 @@ const SignupComponent: React.FC<EmailInputProps> = () => {
           <span className=" text-[#FFFFFF] text-[12px]">
             Already have an account?
           </span>{" "}
-          <span className=" ml-[10px] text-[#FC4747] text-[12px]">Login</span>
+          <span
+            onClick={handleLoginAndSignout}
+            className=" cursor-pointer ml-[10px] text-[#FC4747] text-[12px]"
+          >
+            Login
+          </span>
         </div>
       </div>
     </div>
