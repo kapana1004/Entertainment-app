@@ -10,7 +10,7 @@ interface EmailInputProps {
   setValidPassword: (validPassword: boolean) => void;
 }
 const Logincomponent: React.FC<EmailInputProps> = ({
-  handleLoginAndSignout,
+  // handleLoginAndSignout,
   isValid,
   setValid,
   isValidPassword,
@@ -19,7 +19,7 @@ const Logincomponent: React.FC<EmailInputProps> = ({
   const [showLoginPassword, setShowLoginPassword] = useState<boolean>(false);
   const [loginMail, setLoginMail] = useState<string>("");
   const [loginPass, setLoginPass] = useState<string>("");
-  const [login, setLogin] = useState<string>("");
+  const [login, setLogin] = useState<boolean>(false);
 
   const handleToggleLoginPasswordVisibility = (): void => {
     setShowLoginPassword(!showLoginPassword);
@@ -44,12 +44,13 @@ const Logincomponent: React.FC<EmailInputProps> = ({
   const handleLogin = (): void => {
     if (loginMail === getMail && loginPass === getPass) {
       console.log("go to main page");
+      setLogin(true);
 
-      setLogin("kvaxi");
-      console.log(loginMail, getMail, loginPass, getPass, login);
+      console.log(loginMail, getMail, loginPass, getPass);
     } else {
       console.log("Credential Failed");
     }
+    console.log(login);
   };
 
   return (
@@ -98,8 +99,7 @@ const Logincomponent: React.FC<EmailInputProps> = ({
             {showLoginPassword ? "hide" : "show"}
           </span>
         </div>
-        {/* {login ? ( */}
-        <Link to={`${login ? "/mainpage" : "/signup"}`}>
+        <Link to="/mainpage">
           <button
             onClick={handleLogin}
             className=" ml-[20px] mt-[30px] w-[279px] h-[48px] rounded-[10px] bg-[#FC4747] text-[15px] text-[#FFFFFF]"
@@ -108,7 +108,6 @@ const Logincomponent: React.FC<EmailInputProps> = ({
             Login to your account
           </button>
         </Link>
-
         <div className=" flex flex-row  pl-[50px] mt-[20px]">
           {" "}
           <span className=" text-[#FFFFFF] text-[12px]">

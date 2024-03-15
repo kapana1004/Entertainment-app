@@ -3,6 +3,7 @@ import { Route, Routes, Navigate } from "react-router-dom";
 import Logincomponent from "./components/Logincomponent";
 import SignupComponent from "./components/Signupcomponent";
 import Menubar from "./pages/Menubar";
+import Mainpage from "./pages/Mainpage";
 
 function App() {
   const [logOrSign, setLogOrSign] = useState<boolean>(true);
@@ -59,40 +60,8 @@ function App() {
         }
       />
 
-      <Route path="/mainpage" element={<Menubar />} />
+      <Route path="/mainpage" element={<Mainpage />} />
     </Routes>
-
-    //   <div>
-    //     {logOrSign ? (
-    //       <Logincomponent
-    //         handleLoginAndSignout={handleLoginAndSignout}
-    //         isValid={isValid}
-    //         setValid={setValid}
-    //         isValidPassword={isValidPassword}
-    //         setValidPassword={setValidPassword}
-    //       />
-    //     ) : null}
-    //     {!logOrSign ? (
-    //       <SignupComponent
-    //         handleLoginAndSignout={handleLoginAndSignout}
-    //         email={email}
-    //         setEmail={setEmail}
-    //         password={password}
-    //         setPassword={setPassword}
-    //         repeatPassword={repeatPassword}
-    //         setRepeatPassword={setRepeatPassword}
-    //         savedEmail={savedEmail}
-    //         setSavedEmail={setSavedEmail}
-    //         savedPassword={savedPassword}
-    //         setSavedPassword={setSavedPassword}
-    //         isValid={isValid}
-    //         setValid={setValid}
-    //         isValidPassword={isValidPassword}
-    //         setValidPassword={setValidPassword}
-    //       />
-    //     ) : null}
-    //   </div>
-    // );
   );
 }
 
