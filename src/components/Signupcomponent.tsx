@@ -1,5 +1,6 @@
 import React, { useState, ChangeEvent, MouseEventHandler } from "react";
 import Logo from "./SVG/Logo";
+import { Link } from "react-router-dom";
 
 interface EmailInputProps {
   handleLoginAndSignout: MouseEventHandler<HTMLSpanElement>;
@@ -31,10 +32,6 @@ const SignupComponent: React.FC<EmailInputProps> = ({
   setValid,
   isValidPassword,
   setValidPassword,
-  setSavedEmail,
-  setSavedPassword,
-  savedEmail,
-  savedPassword,
 }) => {
   const [passwordsMatch, setPasswordsMatch] = useState<boolean>(true);
   const [showPassword, setShowPassword] = useState<boolean>(false);
@@ -73,7 +70,7 @@ const SignupComponent: React.FC<EmailInputProps> = ({
     setShowRepeatPassword(!showRepeatPassword);
   };
 
-  const handleSignout = (): void => {
+  const handleSignup = (): void => {
     localStorage.setItem("mail", email);
     localStorage.setItem("pass", password);
     if (isValid && passwordsMatch) {
@@ -165,7 +162,7 @@ const SignupComponent: React.FC<EmailInputProps> = ({
         </div>
 
         <button
-          onClick={handleSignout}
+          onClick={handleSignup}
           className=" ml-[20px] mt-[30px] w-[279px] h-[48px] rounded-[10px] bg-[#FC4747] text-[15px] text-[#FFFFFF]"
         >
           {" "}
@@ -177,12 +174,14 @@ const SignupComponent: React.FC<EmailInputProps> = ({
           <span className=" text-[#FFFFFF] text-[12px]">
             Already have an account?
           </span>{" "}
-          <span
-            onClick={handleLoginAndSignout}
-            className=" cursor-pointer ml-[10px] text-[#FC4747] text-[12px]"
-          >
-            Login
-          </span>
+          <Link to="/login">
+            <span
+              // onClick={handleLoginAndSignout}
+              className=" cursor-pointer ml-[10px] text-[#FC4747] text-[12px]"
+            >
+              Login
+            </span>
+          </Link>
         </div>
       </div>
     </div>

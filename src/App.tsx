@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { Route, Routes, Navigate } from "react-router-dom";
 import Logincomponent from "./components/Logincomponent";
 import SignupComponent from "./components/Signupcomponent";
 
@@ -21,36 +21,75 @@ function App() {
     setLogOrSign(!logOrSign);
   };
   return (
-    <div>
-      {logOrSign ? (
-        <Logincomponent
-          handleLoginAndSignout={handleLoginAndSignout}
-          isValid={isValid}
-          setValid={setValid}
-          isValidPassword={isValidPassword}
-          setValidPassword={setValidPassword}
-        />
-      ) : null}
-      {!logOrSign ? (
-        <SignupComponent
-          handleLoginAndSignout={handleLoginAndSignout}
-          email={email}
-          setEmail={setEmail}
-          password={password}
-          setPassword={setPassword}
-          repeatPassword={repeatPassword}
-          setRepeatPassword={setRepeatPassword}
-          savedEmail={savedEmail}
-          setSavedEmail={setSavedEmail}
-          savedPassword={savedPassword}
-          setSavedPassword={setSavedPassword}
-          isValid={isValid}
-          setValid={setValid}
-          isValidPassword={isValidPassword}
-          setValidPassword={setValidPassword}
-        />
-      ) : null}
-    </div>
+    <Routes>
+      <Route path="/" element={<Navigate to="/login" />} />
+      <Route
+        path="/login"
+        element={
+          <Logincomponent
+            handleLoginAndSignout={handleLoginAndSignout}
+            isValid={isValid}
+            setValid={setValid}
+            isValidPassword={isValidPassword}
+            setValidPassword={setValidPassword}
+          />
+        }
+      />
+      <Route
+        path="/signup"
+        element={
+          <SignupComponent
+            handleLoginAndSignout={handleLoginAndSignout}
+            email={email}
+            setEmail={setEmail}
+            password={password}
+            setPassword={setPassword}
+            repeatPassword={repeatPassword}
+            setRepeatPassword={setRepeatPassword}
+            savedEmail={savedEmail}
+            setSavedEmail={setSavedEmail}
+            savedPassword={savedPassword}
+            setSavedPassword={setSavedPassword}
+            isValid={isValid}
+            setValid={setValid}
+            isValidPassword={isValidPassword}
+            setValidPassword={setValidPassword}
+          />
+        }
+      />
+    </Routes>
+
+    //   <div>
+    //     {logOrSign ? (
+    //       <Logincomponent
+    //         handleLoginAndSignout={handleLoginAndSignout}
+    //         isValid={isValid}
+    //         setValid={setValid}
+    //         isValidPassword={isValidPassword}
+    //         setValidPassword={setValidPassword}
+    //       />
+    //     ) : null}
+    //     {!logOrSign ? (
+    //       <SignupComponent
+    //         handleLoginAndSignout={handleLoginAndSignout}
+    //         email={email}
+    //         setEmail={setEmail}
+    //         password={password}
+    //         setPassword={setPassword}
+    //         repeatPassword={repeatPassword}
+    //         setRepeatPassword={setRepeatPassword}
+    //         savedEmail={savedEmail}
+    //         setSavedEmail={setSavedEmail}
+    //         savedPassword={savedPassword}
+    //         setSavedPassword={setSavedPassword}
+    //         isValid={isValid}
+    //         setValid={setValid}
+    //         isValidPassword={isValidPassword}
+    //         setValidPassword={setValidPassword}
+    //       />
+    //     ) : null}
+    //   </div>
+    // );
   );
 }
 

@@ -1,5 +1,6 @@
 import { ChangeEvent, MouseEventHandler, useState } from "react";
 import Logo from "./SVG/Logo";
+import { Link } from "react-router-dom";
 
 interface EmailInputProps {
   handleLoginAndSignout: MouseEventHandler<HTMLSpanElement>;
@@ -106,12 +107,14 @@ const Logincomponent: React.FC<EmailInputProps> = ({
           <span className=" text-[#FFFFFF] text-[12px]">
             Don’t have an account?
           </span>{" "}
-          <span
-            onClick={handleLoginAndSignout}
-            className=" cursor-pointer ml-[10px] text-[#FC4747] text-[12px]"
-          >
-            Sign Up
-          </span>
+          <Link to="/signup">
+            <span
+              // onClick={handleLoginAndSignout}
+              className=" cursor-pointer ml-[10px] text-[#FC4747] text-[12px]"
+            >
+              Sign Up
+            </span>
+          </Link>
         </div>
       </div>
     </div>
