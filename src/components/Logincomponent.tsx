@@ -19,6 +19,7 @@ const Logincomponent: React.FC<EmailInputProps> = ({
   const [showLoginPassword, setShowLoginPassword] = useState<boolean>(false);
   const [loginMail, setLoginMail] = useState<string>("");
   const [loginPass, setLoginPass] = useState<string>("");
+  const [login, setLogin] = useState<string>("");
 
   const handleToggleLoginPasswordVisibility = (): void => {
     setShowLoginPassword(!showLoginPassword);
@@ -41,12 +42,16 @@ const Logincomponent: React.FC<EmailInputProps> = ({
   const getPass = localStorage.getItem("pass");
 
   const handleLogin = (): void => {
-    if (loginMail == getMail && loginPass == getPass) {
+    if (loginMail === getMail && loginPass === getPass) {
       console.log("go to main page");
+
+      setLogin("kvaxi");
+      console.log(loginMail, getMail, loginPass, getPass, login);
     } else {
       console.log("Credential Failed");
     }
   };
+
   return (
     <div className=" min-w-[100vw] min-h-[100vh] bg-[#10141E] flex flex-col items-center">
       {/* <img className=" mt-[40px]" src={Logo} alt="logo" /> */}
@@ -93,14 +98,16 @@ const Logincomponent: React.FC<EmailInputProps> = ({
             {showLoginPassword ? "hide" : "show"}
           </span>
         </div>
-
-        <button
-          onClick={handleLogin}
-          className=" ml-[20px] mt-[30px] w-[279px] h-[48px] rounded-[10px] bg-[#FC4747] text-[15px] text-[#FFFFFF]"
-        >
-          {" "}
-          Login to your account
-        </button>
+        {/* {login ? ( */}
+        <Link to={`${login ? "/mainpage" : "/signup"}`}>
+          <button
+            onClick={handleLogin}
+            className=" ml-[20px] mt-[30px] w-[279px] h-[48px] rounded-[10px] bg-[#FC4747] text-[15px] text-[#FFFFFF]"
+          >
+            {" "}
+            Login to your account
+          </button>
+        </Link>
 
         <div className=" flex flex-row  pl-[50px] mt-[20px]">
           {" "}

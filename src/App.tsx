@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 import Logincomponent from "./components/Logincomponent";
 import SignupComponent from "./components/Signupcomponent";
+import Menubar from "./pages/Menubar";
 
 function App() {
   const [logOrSign, setLogOrSign] = useState<boolean>(true);
@@ -57,6 +58,8 @@ function App() {
           />
         }
       />
+
+      <Route path="/mainpage" element={<Menubar />} />
     </Routes>
 
     //   <div>
