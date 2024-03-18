@@ -20,13 +20,26 @@ export default function Mainpage() {
           alt="search"
         />
       </div>
-      <div className="">
-        {ContentData.map((item, index) => (
-          <div className=" overflow-x-auto w-[240px]" key={index}>
-            <img className="" src={item.thumbnail.trending?.small} alt="" />
-          </div>
-        ))}
-        {}
+
+      <div className=" flex flex-col mt-[20px]">
+        <span className=" text-white mb-[10px] ml-[20px]">Trending</span>
+        <div className=" flex overflow-scroll ">
+          {ContentData.map((item) =>
+            item.thumbnail.trending ? (
+              <div className=" flex relative w-[240px] h-[140px]">
+                <img
+                  className=" w-[240px] h-[140px] ml-[10px] rounded-[10px]"
+                  src={item.thumbnail.trending?.small}
+                  alt=""
+                />
+                <span className=" absolute top-[70%] left-[20%] text-white">
+                  {" "}
+                  {item.year}
+                </span>
+              </div>
+            ) : null
+          )}
+        </div>
       </div>
     </div>
   );
