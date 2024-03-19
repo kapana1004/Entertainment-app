@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 import Logincomponent from "./components/Logincomponent";
 import SignupComponent from "./components/Signupcomponent";
-import Menubar from "./pages/Menubar";
 import Mainpage from "./pages/Mainpage";
 
 function App() {

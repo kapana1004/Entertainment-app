@@ -73,7 +73,7 @@ const SignupComponent: React.FC<EmailInputProps> = ({
   const handleSignup = (): void => {
     localStorage.setItem("mail", email);
     localStorage.setItem("pass", password);
-    if (isValid && passwordsMatch) {
+    if (isValid && passwordsMatch && email.length > 1 && password.length >= 6) {
       setSigned(true);
     }
     hideSign();
@@ -81,7 +81,6 @@ const SignupComponent: React.FC<EmailInputProps> = ({
 
   return (
     <div className=" min-w-[100vw] min-h-[100vh] bg-[#10141E] flex flex-col items-center">
-      {/* <img className=" mt-[40px]" src={Logo} alt="logo" /> */}
       <div className=" mt-[40px]">
         {" "}
         <Logo />
