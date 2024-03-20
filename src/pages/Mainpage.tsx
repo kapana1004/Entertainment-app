@@ -14,12 +14,16 @@ export default function Mainpage() {
   const [trending, setTrending] = useState<boolean>(true);
   const [recomended, setRecomended] = useState<boolean>(true);
   const [Tvseries, setTvseries] = useState<boolean>(false);
+  const [logoColor, setLogoColor] = useState<string>("");
+  const [changeColor, setChangeColor] = useState<boolean>(false);
 
   const handleMovieContent = () => {
     setmovie(true);
     setRecomended(false);
     setTrending(false);
     setTvseries(false);
+    setChangeColor(true);
+    setLogoColor("#FFFFFF");
   };
 
   const handleTvseriesContent = () => {
@@ -27,12 +31,16 @@ export default function Mainpage() {
     setmovie(false);
     setRecomended(false);
     setTrending(false);
+    setLogoColor("#FFFFFF");
+    setChangeColor(true);
   };
   const handleHome = () => {
     setTvseries(false);
     setmovie(false);
     setRecomended(true);
     setTrending(true);
+    setLogoColor("#FFFFFF");
+    setChangeColor(true);
   };
 
   console.log(movie);
@@ -42,6 +50,8 @@ export default function Mainpage() {
         handleMovieContent={handleMovieContent}
         handleTvseriesContent={handleTvseriesContent}
         handleHome={handleHome}
+        logoColor={logoColor}
+        changeColor={changeColor}
       />
       <div className=" flex relative pt-[20px] w-[375px] ">
         <input

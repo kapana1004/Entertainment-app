@@ -9,21 +9,37 @@ interface MoenuProps {
   handleMovieContent: () => void;
   handleTvseriesContent: () => void;
   handleHome: () => void;
+  logoColor: string;
+  changeColor: string;
 }
 
 export default function Menubar({
   handleMovieContent,
   handleTvseriesContent,
   handleHome,
+  changeColor,
+  logoColor,
 }: MoenuProps) {
   return (
     <div className=" pl-[20px] pr-[20px] w-[375px] h-[56px] bg-[#161D2F] flex flex-row justify-between items-center ">
       {" "}
       <Logo />
       <div className=" flex flex-row w-[133.5px] justify-between cursor-pointer">
-        <Home handleHome={handleHome} />
-        <Movies handleMovieContent={handleMovieContent} />
-        <Tvseries handleTvseriesContent={handleTvseriesContent} />
+        <Home
+          handleHome={handleHome}
+          logoColor={logoColor}
+          changeColor={changeColor}
+        />
+        <Movies
+          handleMovieContent={handleMovieContent}
+          logoColor={logoColor}
+          changeColor={changeColor}
+        />
+        <Tvseries
+          handleTvseriesContent={handleTvseriesContent}
+          logoColor={logoColor}
+          changeColor={changeColor}
+        />
         <Bookmark />
       </div>
       <img
