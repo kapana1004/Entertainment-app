@@ -11,7 +11,10 @@ export default function TrendingSection() {
       <div className=" flex overflow-x-scroll w-[375px]">
         {ContentData.map((item, index) =>
           item.thumbnail.trending ? (
-            <div className=" flex relative min-w-[240px] h-[140px] ml-[10px]">
+            <div
+              key={index}
+              className=" flex relative min-w-[240px] h-[140px] ml-[10px]"
+            >
               <div className=" rounded-full bg-[#10141E] opacity-50 flex justify-center items-center w-[32px] h-[32px] absolute top-[8%] right-[0%]">
                 {" "}
                 <BookmarkedEmpty />{" "}

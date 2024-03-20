@@ -1,8 +1,13 @@
 import React from "react";
 
-export default function Tvseries() {
+interface TvseriesProps {
+  handleTvseriesContent: () => void;
+}
+
+export default function Tvseries({ handleTvseriesContent }: TvseriesProps) {
   return (
     <svg
+      onClick={handleTvseriesContent}
       className=" cursor-pointer"
       width="16"
       height="16"

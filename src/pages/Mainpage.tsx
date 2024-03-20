@@ -4,12 +4,38 @@ import IconSearch from "../../public/assets/icon-search.svg";
 import ContentData from "../data.json";
 import TrendingSection from "./TrendingSection";
 import RecomendedPage from "./RecomendedPage";
+import MovieContent from "./MOvieContent";
+import { useState } from "react";
+import TvseriesContent from "./TvseriesContent";
 
 console.log(ContentData);
 export default function Mainpage() {
+  const [movie, setmovie] = useState<boolean>(false);
+  const [trending, setTrending] = useState<boolean>(true);
+  const [recomended, setRecomended] = useState<boolean>(true);
+  const [Tvseries, setTvseries] = useState<boolean>(false);
+
+  const handleMovieContent = () => {
+    setmovie(true);
+    setRecomended(false);
+    setTrending(false);
+    setTvseries(false);
+  };
+
+  const handleTvseriesContent = () => {
+    setTvseries(true);
+    setmovie(false);
+    setRecomended(false);
+    setTrending(false);
+  };
+
+  console.log(movie);
   return (
     <div className="flex min-w-[100vw] min-h-[100vh] flex-col bg-[#10141E] items-center ">
-      <Menubar />
+      <Menubar
+        handleMovieContent={handleMovieContent}
+        handleTvseriesContent={handleTvseriesContent}
+      />
       <div className=" flex relative pt-[20px] w-[375px] ">
         <input
           className=" bg-inherit text-[16px] w-[257px] h-[24px] text-[#FFFFFF] pl-[40px] max-w-[257px] "
@@ -23,9 +49,11 @@ export default function Mainpage() {
         />
       </div>
 
-      <TrendingSection />
+      {trending ? <TrendingSection /> : null}
 
-      <RecomendedPage />
+      {recomended ? <RecomendedPage /> : null}
+      {movie ? <MovieContent /> : null}
+      {Tvseries ? <TvseriesContent /> : null}
     </div>
   );
 }

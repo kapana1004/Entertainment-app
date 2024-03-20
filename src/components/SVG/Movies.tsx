@@ -1,8 +1,13 @@
 import React from "react";
 
-export default function Movies() {
+interface MovieProps {
+  handleMovieContent: () => void;
+}
+
+export default function Movies({ handleMovieContent }: MovieProps) {
   return (
     <svg
+      onClick={handleMovieContent}
       className=" cursor-pointer"
       width="16"
       height="16"
