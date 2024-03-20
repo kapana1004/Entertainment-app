@@ -4,9 +4,9 @@ import IconSearch from "../../public/assets/icon-search.svg";
 import ContentData from "../data.json";
 import TrendingSection from "./TrendingSection";
 import RecomendedPage from "./RecomendedPage";
-import MovieContent from "./MOvieContent";
 import { useState } from "react";
 import TvseriesContent from "./TvseriesContent";
+import MoviesContent from "./MoviesContent";
 
 console.log(ContentData);
 export default function Mainpage() {
@@ -28,6 +28,12 @@ export default function Mainpage() {
     setRecomended(false);
     setTrending(false);
   };
+  const handleHome = () => {
+    setTvseries(false);
+    setmovie(false);
+    setRecomended(true);
+    setTrending(true);
+  };
 
   console.log(movie);
   return (
@@ -35,6 +41,7 @@ export default function Mainpage() {
       <Menubar
         handleMovieContent={handleMovieContent}
         handleTvseriesContent={handleTvseriesContent}
+        handleHome={handleHome}
       />
       <div className=" flex relative pt-[20px] w-[375px] ">
         <input
@@ -52,7 +59,7 @@ export default function Mainpage() {
       {trending ? <TrendingSection /> : null}
 
       {recomended ? <RecomendedPage /> : null}
-      {movie ? <MovieContent /> : null}
+      {movie ? <MoviesContent /> : null}
       {Tvseries ? <TvseriesContent /> : null}
     </div>
   );

@@ -1,22 +1,22 @@
-import React, { useState } from "react";
+import React from "react";
 import Trendingmovielogo from "../components/SVG/Trendingmovielogo";
 import ContentData from "../data.json";
 import BookmarkedEmpty from "../components/SVG/BookmarkedEmpty";
 
-export default function MovieContent() {
+export default function MoviesContent() {
   return (
     <div className=" w-[375px]">
       <h1 className=" ml-[20px] mt-[30px] mb-[30px] text-[#ffffff] text-[20px] ">
-        Movies
+        TV Series
       </h1>
 
       <div className=" w-[343px] grid grid-cols-2 ml-[20px] overflow-y-auto max-h-[400px] ">
-        {ContentData.map((item) =>
+        {ContentData.map((item, index) =>
           item.category === "Movie" ? (
-            <div className=" w-[164px] pb-[20px] relative">
+            <div key={index} className=" w-[164px] pb-[20px] relative">
               <div className=" rounded-full bg-[#10141E] opacity-50 flex justify-center items-center w-[32px] h-[32px] absolute top-[5%] right-[3%]">
                 {" "}
-                <BookmarkedEmpty />{" "}
+                <BookmarkedEmpty />
               </div>
               <img
                 className=" w-[164px] rounded-[10px]"

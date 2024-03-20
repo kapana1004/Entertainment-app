@@ -1,7 +1,11 @@
 import React from "react";
 import { useState } from "react";
 
-export default function Home() {
+interface Homeprops {
+  handleHome: () => void;
+}
+
+export default function Home({ handleHome }: Homeprops) {
   const [homeColor, setHomeColor] = useState<string>("");
   const [changeColor, setChangeColor] = useState<boolean>(false);
 
@@ -12,7 +16,7 @@ export default function Home() {
   return (
     <svg
       className=" cursor-pointer"
-      onClick={handleColorHome}
+      onClick={handleHome}
       width="16"
       height="16"
       xmlns="http://www.w3.org/2000/svg"
