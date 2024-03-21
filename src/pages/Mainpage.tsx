@@ -7,23 +7,47 @@ import RecomendedPage from "./RecomendedPage";
 import { useState } from "react";
 import TvseriesContent from "./TvseriesContent";
 import MoviesContent from "./MoviesContent";
+import BookmarkedContent from "./BookmarkedContent";
 
 console.log(ContentData);
 export default function Mainpage() {
   const [movie, setmovie] = useState<boolean>(false);
   const [trending, setTrending] = useState<boolean>(true);
   const [recomended, setRecomended] = useState<boolean>(true);
+  const [bookmarked, setBookmarked] = useState<boolean>(false);
   const [Tvseries, setTvseries] = useState<boolean>(false);
-  const [logoColor, setLogoColor] = useState<string>("");
-  const [changeColor, setChangeColor] = useState<boolean>(false);
+  const [homelogoColor, setHomeLogoColor] = useState<string>("#FFFFFF");
+  const [movieLogoColor, setMovieLogoColor] = useState<string>("");
+  const [tvLogoColor, setTvLogoColor] = useState<string>("");
+  const [changeHomeColor, setChangeHomeColor] = useState<boolean>(true);
+  const [changeMovieColor, setChangeMovieColor] = useState<boolean>(false);
+  const [changeTvColor, setChangeTvColor] = useState<boolean>(false);
+  const [changeBookmarkColor, setChanegBookmarkColor] = useState<string>("");
+  const [bookmarkColor, setBookmarkColor] = useState<boolean>(false);
+
+  const handleBookmark = () => {
+    setBookmarkColor(true);
+    setChanegBookmarkColor("#FFFFFF");
+    setRecomended(false);
+    setTrending(false);
+    setTvseries(false);
+    setChangeHomeColor(false);
+    setChangeTvColor(false);
+    setmovie(false);
+    setBookmarked(true);
+  };
 
   const handleMovieContent = () => {
     setmovie(true);
     setRecomended(false);
     setTrending(false);
     setTvseries(false);
-    setChangeColor(true);
-    setLogoColor("#FFFFFF");
+    setChangeMovieColor(true);
+    setMovieLogoColor("#FFFFFF");
+    setChangeHomeColor(false);
+    setChangeTvColor(false);
+    setBookmarkColor(false);
+    setBookmarked(false);
   };
 
   const handleTvseriesContent = () => {
@@ -31,16 +55,24 @@ export default function Mainpage() {
     setmovie(false);
     setRecomended(false);
     setTrending(false);
-    setLogoColor("#FFFFFF");
-    setChangeColor(true);
+    setTvLogoColor("#FFFFFF");
+    setChangeTvColor(true);
+    setChangeHomeColor(false);
+    setChangeMovieColor(false);
+    setBookmarkColor(false);
+    setBookmarked(false);
   };
   const handleHome = () => {
     setTvseries(false);
     setmovie(false);
     setRecomended(true);
     setTrending(true);
-    setLogoColor("#FFFFFF");
-    setChangeColor(true);
+    setHomeLogoColor("#FFFFFF");
+    setChangeHomeColor(true);
+    setChangeMovieColor(false);
+    setChangeTvColor(false);
+    setBookmarkColor(false);
+    setBookmarked(false);
   };
 
   console.log(movie);
@@ -50,8 +82,15 @@ export default function Mainpage() {
         handleMovieContent={handleMovieContent}
         handleTvseriesContent={handleTvseriesContent}
         handleHome={handleHome}
-        logoColor={logoColor}
-        changeColor={changeColor}
+        handleBookmark={handleBookmark}
+        homelogoColor={homelogoColor}
+        changeHomeColor={changeHomeColor}
+        tvLogoColor={tvLogoColor}
+        movieLogoColor={movieLogoColor}
+        changeMovieColor={changeMovieColor}
+        changeTvColor={changeTvColor}
+        bookmarkColor={bookmarkColor}
+        changeBookmarkColor={changeBookmarkColor}
       />
       <div className=" flex relative pt-[20px] w-[375px] ">
         <input
@@ -71,6 +110,7 @@ export default function Mainpage() {
       {recomended ? <RecomendedPage /> : null}
       {movie ? <MoviesContent /> : null}
       {Tvseries ? <TvseriesContent /> : null}
+      {bookmarked ? <BookmarkedContent /> : null}
     </div>
   );
 }

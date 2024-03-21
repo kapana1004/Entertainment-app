@@ -9,16 +9,30 @@ interface MoenuProps {
   handleMovieContent: () => void;
   handleTvseriesContent: () => void;
   handleHome: () => void;
-  logoColor: string;
-  changeColor: string;
+  handleBookmark: () => void;
+  homelogoColor: string;
+  changeHomeColor: boolean;
+  movieLogoColor: string;
+  tvLogoColor: string;
+  changeMovieColor: boolean;
+  changeTvColor: boolean;
+  bookmarkColor: boolean;
+  changeBookmarkColor: boolean;
 }
 
 export default function Menubar({
   handleMovieContent,
   handleTvseriesContent,
   handleHome,
-  changeColor,
-  logoColor,
+  handleBookmark,
+  changeHomeColor,
+  homelogoColor,
+  movieLogoColor,
+  tvLogoColor,
+  changeMovieColor,
+  changeTvColor,
+  bookmarkColor,
+  changeBookmarkColor,
 }: MoenuProps) {
   return (
     <div className=" pl-[20px] pr-[20px] w-[375px] h-[56px] bg-[#161D2F] flex flex-row justify-between items-center ">
@@ -27,20 +41,24 @@ export default function Menubar({
       <div className=" flex flex-row w-[133.5px] justify-between cursor-pointer">
         <Home
           handleHome={handleHome}
-          logoColor={logoColor}
-          changeColor={changeColor}
+          homelogoColor={homelogoColor}
+          changeHomeColor={changeHomeColor}
         />
         <Movies
           handleMovieContent={handleMovieContent}
-          logoColor={logoColor}
-          changeColor={changeColor}
+          movieLogoColor={movieLogoColor}
+          changeMovieColor={changeMovieColor}
         />
         <Tvseries
           handleTvseriesContent={handleTvseriesContent}
-          logoColor={logoColor}
-          changeColor={changeColor}
+          tvLogoColor={tvLogoColor}
+          changeTvColor={changeTvColor}
         />
-        <Bookmark />
+        <Bookmark
+          bookmarkColor={bookmarkColor}
+          changeBookmarkColor={changeBookmarkColor}
+          handleBookmark={handleBookmark}
+        />
       </div>
       <img
         className=" w-[24px] h-[24px] rounded-[50px] border border-[#FFFFFF]"
