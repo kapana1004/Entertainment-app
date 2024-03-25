@@ -17,7 +17,7 @@ interface MoenuProps {
   changeMovieColor: boolean;
   changeTvColor: boolean;
   bookmarkColor: boolean;
-  changeBookmarkColor: boolean;
+  changeBookmarkColor: string;
 }
 
 export default function Menubar({

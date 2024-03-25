@@ -9,7 +9,6 @@ import TvseriesContent from "./TvseriesContent";
 import MoviesContent from "./MoviesContent";
 import BookmarkedContent from "./BookmarkedContent";
 
-console.log(ContentData);
 export default function Mainpage() {
   const [movie, setmovie] = useState<boolean>(false);
   const [trending, setTrending] = useState<boolean>(true);
@@ -24,6 +23,7 @@ export default function Mainpage() {
   const [changeTvColor, setChangeTvColor] = useState<boolean>(false);
   const [changeBookmarkColor, setChanegBookmarkColor] = useState<string>("");
   const [bookmarkColor, setBookmarkColor] = useState<boolean>(false);
+  // const [bookmarkedIcon, setBookmarkedIcon] = useState<boolean>(false);
 
   const handleBookmark = () => {
     setBookmarkColor(true);
