@@ -8,6 +8,7 @@ interface EmailInputProps {
   setValid: (isValid: boolean) => void;
   isValidPassword: boolean;
   setValidPassword: (validPassword: boolean) => void;
+  signed: boolean;
 }
 const Logincomponent: React.FC<EmailInputProps> = ({
   // handleLoginAndSignout,
@@ -15,6 +16,7 @@ const Logincomponent: React.FC<EmailInputProps> = ({
   setValid,
   isValidPassword,
   setValidPassword,
+  signed,
 }) => {
   const [showLoginPassword, setShowLoginPassword] = useState<boolean>(false);
   const [loginMail, setLoginMail] = useState<string>("");
@@ -77,7 +79,6 @@ const Logincomponent: React.FC<EmailInputProps> = ({
             Please enter a valid email address
           </p>
         )}
-
         <div className=" relative">
           <input
             className=" w-[279px] h-[37px] ml-[20px] text-[#FFFFFF] bg-[#161D2F] pl-[24px] pb-[35px] pt-[35px] border-b border-b-[#5A698F]"
@@ -99,7 +100,17 @@ const Logincomponent: React.FC<EmailInputProps> = ({
             {showLoginPassword ? "hide" : "show"}
           </span>
         </div>
-        <Link to="/mainpage">
+        {signed ? (
+          <Link to="/mainpage">
+            <button
+              onClick={handleLogin}
+              className=" ml-[20px] mt-[30px] w-[279px] h-[48px] rounded-[10px] bg-[#FC4747] text-[15px] text-[#FFFFFF]"
+            >
+              {" "}
+              Login to your account
+            </button>
+          </Link>
+        ) : (
           <button
             onClick={handleLogin}
             className=" ml-[20px] mt-[30px] w-[279px] h-[48px] rounded-[10px] bg-[#FC4747] text-[15px] text-[#FFFFFF]"
@@ -107,7 +118,8 @@ const Logincomponent: React.FC<EmailInputProps> = ({
             {" "}
             Login to your account
           </button>
-        </Link>
+        )}
+
         <div className=" flex flex-row  pl-[50px] mt-[20px]">
           {" "}
           <span className=" text-[#FFFFFF] text-[12px]">

@@ -13,6 +13,7 @@ function App() {
   const [savedPassword, setSavedPassword] = useState<string>("");
   const [isValid, setValid] = useState<boolean>(true);
   const [isValidPassword, setValidPassword] = useState<boolean>(true);
+  const [signed, setSigned] = useState<boolean>(false);
   localStorage.setItem("mail", email);
   localStorage.setItem("pass", password);
 
@@ -33,6 +34,7 @@ function App() {
             setValid={setValid}
             isValidPassword={isValidPassword}
             setValidPassword={setValidPassword}
+            signed={signed}
           />
         }
       />
@@ -55,6 +57,8 @@ function App() {
             setValid={setValid}
             isValidPassword={isValidPassword}
             setValidPassword={setValidPassword}
+            signed={signed}
+            setSigned={setSigned}
           />
         }
       />

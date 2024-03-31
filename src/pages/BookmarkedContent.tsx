@@ -1,4 +1,3 @@
-import React from "react";
 import Trendingmovielogo from "../components/SVG/Trendingmovielogo";
 import Trendingtvserie from "../components/SVG/Trendingtvserie";
 import BookmarkedEmpty from "../components/SVG/BookmarkedEmpty";
@@ -37,7 +36,7 @@ export default function BookmarkedContent() {
                   {item.rating}
                 </span>
               </div>
-              <span className=" text-white text-[14px]">{item.title}</span>
+              <span className="  text-white text-[14px]">{item.title}</span>
             </div>
           ) : null
         )}

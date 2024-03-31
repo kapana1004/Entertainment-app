@@ -18,6 +18,8 @@ interface EmailInputProps {
   setValid: (isValid: boolean) => void;
   isValidPassword: boolean;
   setValidPassword: (validPassword: boolean) => void;
+  signed: boolean;
+  setSigned: (signed: boolean) => void;
 }
 
 const SignupComponent: React.FC<EmailInputProps> = ({
@@ -32,11 +34,13 @@ const SignupComponent: React.FC<EmailInputProps> = ({
   setValid,
   isValidPassword,
   setValidPassword,
+  signed,
+  setSigned,
 }) => {
   const [passwordsMatch, setPasswordsMatch] = useState<boolean>(true);
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [showRepeatPassword, setShowRepeatPassword] = useState<boolean>(false);
-  const [signed, setSigned] = useState<boolean>(false);
+  // const [signed, setSigned] = useState<boolean>(false);
   const hideSign = () => {
     setTimeout(() => {
       setSigned(false);
@@ -76,7 +80,7 @@ const SignupComponent: React.FC<EmailInputProps> = ({
     if (isValid && passwordsMatch && email.length > 1 && password.length >= 6) {
       setSigned(true);
     }
-    hideSign();
+    // hideSign();
   };
 
   return (

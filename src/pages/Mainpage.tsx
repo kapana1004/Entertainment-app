@@ -75,7 +75,6 @@ export default function Mainpage() {
     setBookmarked(false);
   };
 
-  console.log(movie);
   return (
     <div className="flex min-w-[100vw] min-h-[100vh] flex-col bg-[#10141E] items-center ">
       <Menubar
