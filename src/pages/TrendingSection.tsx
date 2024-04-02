@@ -9,7 +9,7 @@ export default function TrendingSection() {
     <div className=" flex flex-col mt-[20px]">
       <span className=" text-white mb-[10px] ml-[20px]">Trending</span>
       <div className=" flex overflow-x-scroll w-[375px]">
-        {ContentData.map((item, index) =>
+        {ContentData.movies.map((item, index) =>
           item.thumbnail.trending ? (
             <div
               key={index}

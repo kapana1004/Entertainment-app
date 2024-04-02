@@ -12,7 +12,7 @@ export default function RecomendedPage() {
       </h1>
 
       <div className=" w-[343px] grid grid-cols-2 ml-[20px] overflow-y-auto max-h-[400px] ">
-        {ContentData.map((item, index) =>
+        {ContentData.movies.map((item, index) =>
           item.thumbnail.regular ? (
             <div key={index} className=" w-[164px] pb-[20px] relative">
               <div className=" rounded-full bg-[#10141E] opacity-50 flex justify-center items-center w-[32px] h-[32px] absolute top-[5%] right-[3%]">

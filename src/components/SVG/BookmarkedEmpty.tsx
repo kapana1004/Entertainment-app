@@ -13,9 +13,8 @@ export default function BookmarkedEmpty({
   const [bookIcon, setBookIcon] = useState<boolean>(false);
   const [bookIconColor, setBookIconColor] = useState<string>("");
 
-  const [bookedData, setBookedData] = useState(ContentData);
+  const [bookedData, setBookedData] = useState(ContentData.movies);
 
-  // Function to toggle isBookmarked
   const toggleBookmark = (title: string) => {
     const newData = [...bookedData];
     newData.filter((item) => item.title === title);
@@ -47,7 +46,7 @@ export default function BookmarkedEmpty({
         d="m10.518.75.399 12.214-5.084-4.24-4.535 4.426L.75 1.036l9.768-.285Z"
         stroke="#FFF"
         strokeWidth={1.5}
-        fill={bookIcon ? bookIconColor : "none"}
+        fill={isBookmarked ? bookIconColor : "none"}
       />
     </svg>
   );
