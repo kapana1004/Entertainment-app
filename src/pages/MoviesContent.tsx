@@ -17,9 +17,8 @@ export default function MoviesContent() {
               <div className=" rounded-full bg-[#10141E] opacity-50 flex justify-center items-center w-[32px] h-[32px] absolute top-[5%] right-[3%]">
                 {" "}
                 <BookmarkedEmpty
-                // bookIcon={bookIcon}
-                // bookIconColor={bookIconColor}
-                // handleBookmarkedItem={handleBookmarkedItem}
+                  item={item.title}
+                  isBookmarked={item.isBookmarked}
                 />
               </div>
               <img

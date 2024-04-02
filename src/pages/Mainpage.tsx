@@ -1,7 +1,7 @@
-import React from "react";
+// import React from "react";
 import Menubar from "./Menubar";
 import IconSearch from "../../public/assets/icon-search.svg";
-import ContentData from "../data.json";
+// import ContentData from "../data.json";
 import TrendingSection from "./TrendingSection";
 import RecomendedPage from "./RecomendedPage";
 import { useState } from "react";
@@ -35,6 +35,7 @@ export default function Mainpage() {
     setChangeTvColor(false);
     setmovie(false);
     setBookmarked(true);
+    setChangeMovieColor(false);
   };
 
   const handleMovieContent = () => {

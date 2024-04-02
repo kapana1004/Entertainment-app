@@ -20,10 +20,12 @@ interface EmailInputProps {
   setValidPassword: (validPassword: boolean) => void;
   signed: boolean;
   setSigned: (signed: boolean) => void;
+  created: boolean;
+  setCreated: (created: boolean) => void;
 }
 
 const SignupComponent: React.FC<EmailInputProps> = ({
-  handleLoginAndSignout,
+  // handleLoginAndSignout,
   email,
   setEmail,
   password,
@@ -36,6 +38,7 @@ const SignupComponent: React.FC<EmailInputProps> = ({
   setValidPassword,
   signed,
   setSigned,
+  setCreated,
 }) => {
   const [passwordsMatch, setPasswordsMatch] = useState<boolean>(true);
   const [showPassword, setShowPassword] = useState<boolean>(false);
@@ -79,8 +82,9 @@ const SignupComponent: React.FC<EmailInputProps> = ({
     localStorage.setItem("pass", password);
     if (isValid && passwordsMatch && email.length > 1 && password.length >= 6) {
       setSigned(true);
+      setCreated(true);
     }
-    // hideSign();
+    hideSign();
   };
 
   return (
@@ -166,15 +170,15 @@ const SignupComponent: React.FC<EmailInputProps> = ({
 
         <button
           onClick={handleSignup}
-          className=" ml-[20px] mt-[30px] w-[279px] h-[48px] rounded-[10px] bg-[#FC4747] text-[15px] text-[#FFFFFF]"
+          className=" ml-[20px] mt-[30px] w-[279px] h-[48px] rounded-[10px] bg-[#FC4747] text-[15px] text-[#FFFFFF] hover:opacity-70"
         >
           {" "}
           Create an account
         </button>
 
-        <div className=" flex flex-row  pl-[50px] mt-[20px]">
+        <div className=" flex flex-row  pl-[50px] mt-[20px] items-center">
           {" "}
-          <span className=" text-[#FFFFFF] text-[12px]">
+          <span className=" text-[#FFFFFF] text-[12px] pt-[4px]">
             Already have an account?
           </span>{" "}
           <Link to="/login">

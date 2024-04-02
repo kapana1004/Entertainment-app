@@ -1,25 +1,38 @@
 import { useState } from "react";
 import ContentData from "../../data.json";
 
-export default function BookmarkedEmpty() {
+interface bookmarkedEmptyProps {
+  item: string;
+  isBookmarked: boolean;
+}
+
+export default function BookmarkedEmpty({
+  item,
+  isBookmarked,
+}: bookmarkedEmptyProps) {
   const [bookIcon, setBookIcon] = useState<boolean>(false);
   const [bookIconColor, setBookIconColor] = useState<string>("");
 
   const [bookedData, setBookedData] = useState(ContentData);
 
   // Function to toggle isBookmarked
-  const toggleBookmark = (index: any) => {
-    const newData = [...bookedData]; // Create a copy of the state array
-    newData[index] = {
-      ...newData[index],
-      isBookmarked: !newData[index].isBookmarked,
-    }; // Toggle isBookmarked
-    setBookedData(newData); // Update the state with the modified data
+  const toggleBookmark = (title: string) => {
+    const newData = [...bookedData];
+    newData.filter((item) => item.title === title);
+    newData.forEach((movie) => {
+      if (movie.title === title) {
+        movie.isBookmarked = !movie.isBookmarked;
+      }
+    });
+
+    console.log(newData);
+    setBookedData(newData);
   };
   const handleBookmarkedItem = () => {
     setBookIconColor("#FFFFFF");
     setBookIcon(!bookIcon);
-    toggleBookmark;
+    toggleBookmark(item);
+    console.log(item, isBookmarked);
   };
   return (
     <svg

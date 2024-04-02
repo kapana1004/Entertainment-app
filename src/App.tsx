@@ -14,6 +14,7 @@ function App() {
   const [isValid, setValid] = useState<boolean>(true);
   const [isValidPassword, setValidPassword] = useState<boolean>(true);
   const [signed, setSigned] = useState<boolean>(false);
+  const [created, setCreated] = useState<boolean>(false);
   localStorage.setItem("mail", email);
   localStorage.setItem("pass", password);
 
@@ -21,6 +22,10 @@ function App() {
     HTMLSpanElement
   > = () => {
     setLogOrSign(!logOrSign);
+  };
+
+  const hideSign = () => {
+    setSigned(true);
   };
   return (
     <Routes>
@@ -35,6 +40,8 @@ function App() {
             isValidPassword={isValidPassword}
             setValidPassword={setValidPassword}
             signed={signed}
+            hideSign={hideSign}
+            created={created}
           />
         }
       />
@@ -59,6 +66,8 @@ function App() {
             setValidPassword={setValidPassword}
             signed={signed}
             setSigned={setSigned}
+            created={created}
+            setCreated={setCreated}
           />
         }
       />

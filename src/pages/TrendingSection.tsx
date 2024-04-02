@@ -17,7 +17,10 @@ export default function TrendingSection() {
             >
               <div className=" rounded-full bg-[#10141E] opacity-50 flex justify-center items-center w-[32px] h-[32px] absolute top-[8%] right-[0%]">
                 {" "}
-                <BookmarkedEmpty />
+                <BookmarkedEmpty
+                  item={item.title}
+                  isBookmarked={item.isBookmarked}
+                />
               </div>
               <img
                 className=" min-w-[240px] h-[140px] ml-[10px] rounded-[10px]"

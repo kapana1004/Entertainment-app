@@ -16,7 +16,10 @@ export default function TvseriesContent() {
             <div key={index} className=" w-[164px] pb-[20px] relative">
               <div className=" rounded-full bg-[#10141E] opacity-50 flex justify-center items-center w-[32px] h-[32px] absolute top-[5%] right-[3%]">
                 {" "}
-                <BookmarkedEmpty />
+                <BookmarkedEmpty
+                  item={item.title}
+                  isBookmarked={item.isBookmarked}
+                />
               </div>
               <img
                 className=" w-[164px] rounded-[10px]"
