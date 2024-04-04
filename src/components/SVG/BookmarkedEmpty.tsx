@@ -16,22 +16,21 @@ export default function BookmarkedEmpty({
   const [bookedData, setBookedData] = useState(ContentData.movies);
 
   useEffect(() => {
+    const fetchMovies = () => {
+      const requestPost = {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ isBookmarked: true }),
+      };
+
+      fetch("http://localhost:3000/movies", requestPost)
+        .then((response) => response.json())
+        .then((data) => setBookedData(data.movies));
+    };
     fetchMovies();
   }, []);
-
-  const fetchMovies = () => {
-    const requestPost = {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ isBookmarked: true }),
-    };
-
-    fetch("http://localhost:3000/movies", requestPost)
-      .then((response) => response.json())
-      .then((data) => setBookedData(data.movies));
-  };
 
   function toggleBookmark(title: string) {
     const newData = [...bookedData];
